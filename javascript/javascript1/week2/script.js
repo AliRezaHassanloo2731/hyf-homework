@@ -107,6 +107,11 @@ getNumberOfStudents();
 //Candy helper
 //*:candyType - specifies the candy type. Could be 'sweet, chocolate, toffee or chewing-gum'
 //*:weight - specifies the weigth of the candy in grams
+
+//todo  const price = priceOfEachCandy[candyType] * weight;
+
+// boughtCandyPrices.push(price);
+//  return price;
 const priceOfEachCandy = {
   // Candy table prices
   // ?Candy type	Price per gram
@@ -119,10 +124,6 @@ const priceOfEachCandy = {
 const boughtCandyPrices = [];
 const boughtCandy = [];
 function addCandy(candyType, weight) {
-  // const x = priceOfEachCandy[candyType];
-  // console.log(x);//10,16.5,3.599999999996
-  // const y = priceOfEachCandy.candyType;
-  // console.log(y);//! undefined
   const price = priceOfEachCandy[candyType] * weight;
 
   boughtCandyPrices.push(price);
