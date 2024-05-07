@@ -1,3 +1,4 @@
+//todo :first exercise
 //Item array removal
 const names = [
   "Peter",
@@ -22,12 +23,12 @@ console.log(names);
 
 //todo :second exercise
 //When will we be there??
-//data
+//* DATA
 const travelInformation = {
   speed: 50,
   destinationDistance: 432,
 };
-//logic
+//* LOGIC
 const arrivalTime = function (speed, distance) {
   const time = (distance / speed) * 60;
   const minutes = Math.floor(time % 60);
@@ -40,7 +41,7 @@ const arrivalTime = function (speed, distance) {
   }
   return message1;
 };
-//rendering
+//* rendering
 
 const travelTime = arrivalTime(
   travelInformation.speed,
@@ -88,7 +89,7 @@ function lifeDurationHourly(age) {
 
     // calculate percentage of life by hour
     const percentageOfLife =
-      Math.round(
+      Math.trunc(
         Number((moveDurationByHour / lifeByHours) * (100).toFixed(3)) * 1000
       ) / 1000;
 
@@ -104,17 +105,14 @@ function lifeDurationHourly(age) {
   return message;
 }
 
-// function logOutSeriesText() {
-// }
-//? secound way
-
 //*RENDER
+
 console.log("--------third exercise");
 console.log(lifeDurationHourly(80));
 // const logOutSeriesText = lifeDurationHourly(80);
 // console.log(logOutSeriesText);
 //  Game of thrones took 0.01% of my life
 // Sopranos took 0.012% of my life
-// The Wire took 0.007% of my life
+// The Wire took 0.008% of my life
 
-// In total that is 0.2% of my life
+// In total that is 0.3% of my life
