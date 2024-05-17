@@ -3,7 +3,7 @@
 const answers = [];
 const activities = [];
 let firstName = "";
-let anwerObj = {};
+
 let activity = "";
 
 //FIND FIRST NAME
@@ -16,13 +16,11 @@ function findFirstName(command) {
 function greetingAnswer(msg) {
   let answer = "";
   findFirstName(msg);
-  msg.includes("Hello my name is")
+  msg.includes("Hello")
     ? (answer += "nice to meet you" + " " + firstName)
     : (answer +=
         "please use correct syntax: \n Hello my name is: inser your first name here");
   answers.push(firstName);
-  anwerObj = { msg: answer };
-  answers.push(anwerObj);
 
   return answer;
 }
@@ -63,8 +61,6 @@ function removeActivity(msg) {
 
 //DATE
 function getDatOfToday() {
-  let msg = "";
-
   const today = new Date();
 
   const year = today.getFullYear();
@@ -77,7 +73,7 @@ function getDatOfToday() {
 
   const day = today.getDate();
 
-  msg = `Today is: ${day}. of ${month`long`[monthOfToday]} ${year}`;
+  const msg = `Today is: ${day}. of ${month`long`[monthOfToday]} ${year}`;
   return msg;
 }
 
@@ -107,6 +103,8 @@ function divide(num1, num2) {
 
 function mathematicalCalc(queation) {
   let answer = "";
+  // Pseudo:
+  // operations[operator]
   const queationArray = queation.split(" ");
 
   const num1 = parseInt(queationArray[queationArray.length - 3]);
@@ -114,20 +112,24 @@ function mathematicalCalc(queation) {
   const operation = queationArray[queationArray.length - 2];
 
   const num2 = parseInt(queationArray[queationArray.length - 1]);
-  // todo If-Else conditions
-  if (operation === "+") {
-    answer = add(num1, num2);
-  } else if (operation === "-") {
-    answer = subtract(num1, num2);
-  } else if (operation === "*") {
-    answer = multiply(num1, num2);
-  } else if (operation === "/") {
-    answer = divide(num1, num2);
-  } else {
-    answer = "Invalid operation";
+
+  const operations = {
+    "+": add(num1, num2),
+    "-": subtract(num1, num2),
+    "*": multiply(num1, num2),
+    "/": divide(num1, num2),
+  };
+
+  //todo first way
+  for (const operator of Object.keys(operations)) {
+    if (operation === operator) {
+      answer = operations[operator];
+    }
   }
   return answer;
 }
+
+// console.log(mathematicalCalc("what is 3 + 3"));
 
 const ingrediants = [
   "meet",
@@ -145,12 +147,31 @@ const ingrediants = [
 const ing1 = Math.floor(Math.random() * ingrediants.length);
 const ing2 = Math.floor(Math.random() * ingrediants.length);
 
+//?  pattern
+const patterns = {
+  namePattern: /Hello, my name is (.+)/i,
+  addPattern: /Add (.+) to my to do list\./i,
+  removePattern: /Remove (.+) from my to do list\./i,
+  showToDoPattern: /What is my to do\?/,
+  mathPattern: /what is (\d+)\s*([+\-*\/])\s*(\d+)\?/i,
+  getNamePattern: /What is my name\?/i,
+  datePattern: /What day is it today\?/i,
+  timerPattern: /Set a timer for (\d+) min/i,
+};
+//
+let text = "Visit W3Schools";
+let pattern = /w3schools/i;
+let result = text.match(pattern);
+
 //main function
 function getReply(command) {
   let answer = "";
-  let question = command.toLowerCase();
+  // let question = command.map((c) => {
+  //   c.toLowerCase();
+  // });
 
-  if (command.startsWith("Hello")) {
+  // if (command.startsWith("Hello")) {
+  if (command.includes("Hello")) {
     answer = greetingAnswer(command);
   } else if (command === "What is my name?") {
     answer = `Your name is: ${firstName}`;
@@ -175,14 +196,14 @@ function getReply(command) {
   return answer;
 }
 
-console.log(getReply("Hello my name is benjamin")); //("Nice to meet you benjamin");
+console.log(getReply("Hello, my name is Reza")); //("Nice to meet you benjamin");
 console.log(getReply("What is my name?"));
 console.log(getReply("Add fishing to my todo"));
 console.log(getReply("Add singing in the shower to my todo"));
 console.log(getReply("What is on my todo?"));
 console.log(getReply("Remove fishing from my todo"));
-console.log(getReply("What is on my todo?"));
-console.log(getReply("What day is it today?")); // "fishing added to your todo"
+// console.log(getReply("What is on my todo?"));
+// console.log(getReply("What day is it today?")); // "fishing added to your todo"
 console.log(getReply("what is 3 + 3"));
-console.log(getReply("what is 3 * 3"));
-console.log(getReply("i am hungry"));
+// console.log(getReply("what is 3 * 3"));
+// console.log(getReply("i am hungry"));
