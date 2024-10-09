@@ -1,5 +1,5 @@
 carrot,
  spinach,
- Brussels sprouts,
+ Brussels,
  tomato
  onion
