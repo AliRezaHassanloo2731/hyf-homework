@@ -3,5 +3,3 @@ carrot,
  Brussels sprouts,
  tomato
  onion
- Spinach
- Garlic
